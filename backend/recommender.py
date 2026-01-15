@@ -1,42 +1,33 @@
-from langdetect import detect
-import faiss
 import numpy as np
+import faiss
+from langdetect import detect
 
-# ---------------------------------
-# LANGUAGE DETECTION
-# ---------------------------------
 def detect_language(text: str) -> str:
     try:
         return detect(text)
     except:
         return "unknown"
 
-# ---------------------------------
-# RECOMMENDATION LOGIC
-# ---------------------------------
+
 def recommend_books(query, model, index, df, genre=None, language=None, top_k=10):
 
     filtered_df = df
 
-    # -----------------------------
-    # FILTER BY LANGUAGE (IF GIVEN)
-    # -----------------------------
+    # Filter by language
     if language:
         filtered_df = filtered_df[filtered_df["language"] == language]
         if filtered_df.empty:
             return [], f"No books available in selected language ({language})"
 
-    # -----------------------------
-    # FILTER BY GENRE (IF GIVEN)
-    # -----------------------------
+    # Filter by genre
     if genre:
-        filtered_df = filtered_df[filtered_df["genre"].str.lower() == genre.lower()]
+        filtered_df = filtered_df[
+            filtered_df["genre"].str.lower() == genre.lower()
+        ]
         if filtered_df.empty:
             return [], f"No books available for genre '{genre}'"
 
-    # -----------------------------
-    # BROWSE MODE (NO QUERY)
-    # -----------------------------
+    # Browse mode
     if not query:
         results = []
         seen = set()
@@ -55,15 +46,7 @@ def recommend_books(query, model, index, df, genre=None, language=None, top_k=10
 
         return results, None
 
-    # -----------------------------
-    # WEAK QUERY CHECK
-    # -----------------------------
-    if len(query.split()) < 2:
-        return [], "Please provide a more descriptive interest (minimum 2 words)."
-
-    # -----------------------------
-    # SEMANTIC SEARCH MODE
-    # -----------------------------
+    # Semantic search
     descriptions = filtered_df["description"].tolist()
     embeddings = model.encode(descriptions)
 
@@ -94,4 +77,3 @@ def recommend_books(query, model, index, df, genre=None, language=None, top_k=10
         })
 
     return results, None
-

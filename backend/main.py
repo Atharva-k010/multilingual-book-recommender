@@ -2,8 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from data_loader import load_data, create_index
-from recommender import recommend_books, detect_language
+from backend.data_loader import load_data, create_index
+from backend.recommender import recommend_books, detect_language
 
 # ---------------------------------
 # CREATE FASTAPI APP
@@ -46,7 +46,6 @@ class UserInput(BaseModel):
 def recommend(user_input: UserInput):
     query = user_input.query.strip() if user_input.query else ""
 
-    # Weak query protection (semantic search only)
     if query and len(query.split()) < 2:
         return {
             "error": "Please provide a more descriptive interest (minimum 2 words).",
