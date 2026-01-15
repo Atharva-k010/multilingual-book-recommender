@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multilingual Book Recommendation System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<h2>Multilingual Book Recommendation System</h2>
+
+<!-- LANGUAGE -->
+<label>Language:</label>
+<select id="language">
+    <option value="en">English</option>
+    <option value="hi">Hindi</option>
+    <option value="kn">Kannada</option>
+</select>
+
+<br><br>
+
+<!-- GENRE -->
+<label>Genre:</label>
+<select id="genre">
+    <option value="">All Genres</option>
+</select>
+
+<br><br>
+
+<!-- QUERY -->
+<label>Enter your interest:</label><br>
+<input
+    type="text"
+    id="query"
+    size="50"
+    placeholder="Optional: describe your interest (e.g. business action mindset)"
+>
+
+<br><br>
+
+<button onclick="getRecommendations()">Get Recommendations</button>
+
+<hr>
+
+<h3>Message:</h3>
+<p id="message" style="color:red;"></p>
+
+<h3>Results:</h3>
+<ul id="results"></ul>
+
+<script>
+/* -----------------------------
+   LOAD GENRES
+----------------------------- */
+async function loadGenres() {
+    try {
+        const response = await fetch("http://127.0.0.1:8000/top-books");
+        const data = await response.json();
+
+        const genreSelect = document.getElementById("genre");
+        genreSelect.innerHTML = '<option value="">All Genres</option>';
+
+        Object.keys(data).forEach(genre => {
+            const option = document.createElement("option");
+            option.value = genre;
+            option.textContent = genre;
+            genreSelect.appendChild(option);
+        });
+    } catch (err) {
+        console.error("Failed to load genres", err);
+    }
+}
+
+/* -----------------------------
+   GET RECOMMENDATIONS
+----------------------------- */
+async function getRecommendations() {
+    const query = document.getElementById("query").value.trim();
+    const language = document.getElementById("language").value;
+    const genre = document.getElementById("genre").value;
+
+    const message = document.getElementById("message");
+    const list = document.getElementById("results");
+
+    message.innerText = "";
+    list.innerHTML = "";
+
+    try {
+        const response = await fetch("http://127.0.0.1:8000/recommend", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                query: query,
+                language: language,
+                genre: genre || null
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.error) {
+            message.innerText = data.error;
+            return;
+        }
+
+        if (!data.recommendations || data.recommendations.length === 0) {
+            message.innerText = "No recommendations found.";
+            return;
+        }
+
+        if (!query) {
+            message.innerText = "Showing books based on selected filters.";
+        }
+
+        data.recommendations.forEach(book => {
+            const li = document.createElement("li");
+            li.innerHTML = `<b>${book.title}</b> by ${book.author}
+                            <br><i>${book.reason}</i>`;
+            list.appendChild(li);
+        });
+
+    } catch (err) {
+        message.innerText = "Error connecting to backend.";
+        console.error(err);
+    }
+}
+
+/* -----------------------------
+   INIT
+----------------------------- */
+document.addEventListener("DOMContentLoaded", loadGenres);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+book_id,title,author,description,genre,language
+1,Atomic Habits,James Clear,Book about building discipline and good habits,self-help,en
+2,Deep Work,Cal Newport,Focus and discipline in a distracted world,productivity,en
+3,Man's Search for Meaning,Viktor Frankl,Finding purpose through suffering and loneliness,psychology,en
+4,The Alchemist,Paulo Coelho,Story about purpose and self discovery,fiction,en
+5,Ikigai,Hector Garcia,Finding meaning and balance in life,philosophy,en
+6,Think and Grow Rich,Napoleon Hill,Success mindset and personal growth,self-help,en
+7,The Power of Habit,Charles Duhigg,Understanding habits and behavior change,psychology,en
+8,Rich Dad Poor Dad,Robert Kiyosaki,Financial mindset and personal finance,business,en
+9,Start With Why,Simon Sinek,Leadership and purpose driven thinking,productivity,en
+10,Sapiens,Yuval Noah Harari,Brief history of humankind and society,philosophy,en
+11,1984,George Orwell,Dystopian novel about surveillance and control,fiction,en
+12,The Monk Who Sold His Ferrari,Robin Sharma,Spiritual lessons for a meaningful life,self-help,en
+13,Steve Jobs,Walter Isaacson,Biography of Apple co-founder Steve Jobs,biography,en
+14,The Psychology of Money,Morgan Housel,Human behavior related to money and wealth,psychology,en
+15,Alone on the Wall,Alex Honnold,Story of focus courage and solitude,biography,en
+
+16,गुनाहों का देवता,Dharmvir Bharati,Classic Hindi novel about love and sacrifice,fiction,hi
+17,राग दरबारी,श्रीलाल शुक्ल,Satirical Hindi novel on Indian society,fiction,hi
+18,मधुशाला,हरिवंश राय बच्चन,Poetry about life philosophy and emotions,philosophy,hi
+19,जीवन क्या है,स्वामी विवेकानंद,Philosophical thoughts on life and purpose,philosophy,hi
+20,मैंने गांधी को क्यों मारा,Nathuram Godse,Controversial biography and ideology,biography,hi
+21,अलकेमिस्ट (हिंदी),Paulo Coelho,Translated story about self discovery and dreams,fiction,hi
+22,सफलता के नियम,शिव खेड़ा,Self help book on success mindset,self-help,hi
+23,गीतांजलि,रवींद्रनाथ ठाकुर,Spiritual poems about soul and devotion,philosophy,hi
+
+24,संस्कार,U R Ananthamurthy,Novel exploring tradition and modernity,fiction,kn
+25,ಮಲೆಗಳಲಿ ಮದುಮಗಳು,ಕುವೆಂಪು,Classic Kannada novel set in rural Karnataka,fiction,kn
+26,ಕಾರಂತನ ಕಾದಂಬರಿಗಳು,ಶಿವರಾಮ ಕಾರಂತ,Social novels reflecting Indian culture,fiction,kn
+27,ಯಯಾತಿ,ಗಿರೀಶ ಕಾರ್ನಾಡ್,Play based on mythology and human desire,philosophy,kn
+28,ಮೂಕಜ್ಜಿಯ ಕನಸುಗಳು,K Shivaram Karanth,Philosophical novel about dreams and society,philosophy,kn
+29,ಭಾರತದ ಭಾಗ್ಯವಿಧಾತೃಗಳು,ಡಾ ಬಿ ಆರ್ ಅಂಬೇಡ್ಕರ್,Thoughts on Indian society and constitution,biography,kn
+30,ನಿಮ್ಮ ಮನಸ್ಸು ನಿಮ್ಮದು,ಜಯಶಂಕರ ಪ್ರಸಾದ್,Self help thoughts on controlling mind,self-help,kn
